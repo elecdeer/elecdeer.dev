@@ -1,6 +1,7 @@
-import React from "react";
-import {Box, BoxProps, Center, Flex, Heading, HStack, Text} from "@chakra-ui/react";
-import { motion, MotionProps } from "framer-motion";
+import React, { useContext } from "react";
+import { Box, BoxProps, Center, Flex, Heading, HStack } from "@chakra-ui/react";
+import { motion, Transition } from "framer-motion";
+import { RouteDepthChangeContext } from "../../pages/_app";
 
 type Props = {
   title: string;
@@ -9,72 +10,83 @@ type Props = {
 
 const MotionBox = motion<BoxProps>(Box);
 
+const transition: Transition = {
+  ease: "easeOut",
+  duration: "1",
+};
+
 export const MainFrame: React.FC<Props> = ({ title, children }) => {
   //fullなCenterはブラウザ画面サイズ変えるときになんか重いので止めた方がいいかも
   //そういう話でも無いか？
 
-  //exit: 右半分をrotateY
+  const leftContent = (
+    <Center h={"full"} w={"full"}>
+      <Heading size={"2xl"} textColor={"white"}>
+        {title}
+      </Heading>
+    </Center>
+  );
+
+  const rightContent = (
+    <>
+      {children}
+      <Heading>RIGHTRIGHTRIGHTRIGHTRIGHTRIGHT</Heading>
+    </>
+  );
+
+  const depthChange = useContext(RouteDepthChangeContext);
 
   return (
-    // <motion.div
-    //   style={{
-    //     position: "absolute",
-    //     WebkitBackfaceVisibility: "hidden",
-    //   }}
-    //   initial={{ rotateY: -180 }}
-    //   animate={{ rotateY: 0 }}
-    //   exit={{ rotateY: 0 }}
-    //   transition={{ duration: 2 }}
-    // >
-    //
-    // </motion.div>
-
     <HStack h={"100vh"} w={"100vw"} position={"absolute"} spacing={"0px"}>
       <Flex h={"full"} w={"50%"}>
-        <motion.div
+        <MotionBox
+          p={4}
+          position={"absolute"}
+          h={"100%"}
+          w={"50%"}
+          transformOrigin={"right"}
+          translateX={"0%"}
+          zIndex={10}
           style={{
-            position: "absolute",
             WebkitBackfaceVisibility: "hidden",
-            height: "100%",
-            width: "50%",
-            transformOrigin: "right",
-            translateX: "0%",
-            zIndex: 10,
-            backgroundColor: "#68D391",
           }}
-          initial={{ rotateY: -180 }}
+          backgroundColor={"green.300"}
+          initial={depthChange === "DEEP" ? { rotateY: -180 } : { rotateY: 0 }}
           animate={{ rotateY: 0 }}
-          exit={{ rotateY: 0 }}
-          transition={{ duration: 2 }}
+          exit={
+            depthChange === "DEEP"
+              ? { rotateY: 0 }
+              : { rotateY: -180, zIndex: 100 }
+          }
+          transition={transition}
         >
-          <Center h={"full"} w={"full"}>
-            <Heading size={"2xl"} textColor={"white"}>
-              {title}
-            </Heading>
-          </Center>
-        </motion.div>
+          {leftContent}
+        </MotionBox>
       </Flex>
-
       <Flex h={"full"} w={"50%"}>
-        <motion.div
+        <MotionBox
+          p={4}
+          position={"absolute"}
+          h={"100%"}
+          w={"50%"}
+          transformOrigin={"left"}
+          translateX={"0%"}
+          zIndex={10}
           style={{
-            position: "absolute",
             WebkitBackfaceVisibility: "hidden",
-            height: "100%",
-            width: "50%",
-            transformOrigin: "left",
-            translateX: "0%",
-            zIndex: 10,
-            backgroundColor: "#ffffff",
           }}
-          initial={{ rotateY: 0 }}
+          backgroundColor={"white"}
+          initial={depthChange === "DEEP" ? { rotateY: 0 } : { rotateY: -180 }}
           animate={{ rotateY: 0 }}
-          exit={{ rotateY: 180, zIndex: 100 }}
-          transition={{ duration: 2 }}
+          exit={
+            depthChange === "DEEP"
+              ? { rotateY: -180, zIndex: 100 }
+              : { rotateY: 0 }
+          }
+          transition={transition}
         >
-          {children}
-          <Heading>RIGHTRIGHTRIGHTRIGHTRIGHTRIGHT</Heading>
-        </motion.div>
+          {rightContent}
+        </MotionBox>
       </Flex>
     </HStack>
   );

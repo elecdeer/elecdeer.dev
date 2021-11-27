@@ -1,5 +1,5 @@
 import React from "react";
-import { MainFrame } from "../components/templates/MainFrame";
+import { MainFrame } from "../../components/templates/MainFrame";
 import Link from "next/link";
 
 type Props = {};

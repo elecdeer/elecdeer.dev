@@ -7,7 +7,7 @@ type Props = {};
 const PageB: React.FC<Props> = ({}) => {
   return (
     <MainFrame title={"pageB"}>
-      <Link href={"/pageA"}>
+      <Link href={"/test/pageA"}>
         <a>ToPageA</a>
       </Link>
     </MainFrame>
