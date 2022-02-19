@@ -29,6 +29,7 @@ export const NavigationCard: React.VFC<NavigationCardProps> = ({
       px={4}
       py={2}
       h={"full"}
+      minH={32}
       display={"flex"}
       _hover={{ borderColor: "green.400", borderWidth: "2" }}
     >
