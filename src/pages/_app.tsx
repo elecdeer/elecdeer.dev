@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
   useEffect(() => {
     const handleChangeRoute = (url: string) => {
       const depth =
-        router.pathname.split("/").length < url.split("/").length
+        router.pathname.split("/").length <= url.split("/").length
           ? "DEEP"
           : "SHALLOW";
       setDepthChange(depth);

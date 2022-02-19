@@ -12,7 +12,7 @@ export default function Home() {
             {
               title: "Work",
               description: "制作物",
-              linkUrl: "/test/pageA",
+              linkUrl: "/works",
             },
             {
               title: "Blog",
