@@ -5,6 +5,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { fetchWorkPagesHeadline } from "../../lib/fetchWorkPagesHeadline";
 import { fetchWorkPage, WorkPageItem } from "../../lib/fetchWorkPage";
 import React from "react";
+import { LinkWithIcon } from "../../components/molecules/LinkWithIcon";
 
 type Props = {
   pageItem: WorkPageItem;
@@ -23,7 +24,16 @@ const WorkPage: React.VFC<Props> = ({ pageItem }) => {
         displayName: "Works",
       }}
     >
-      <Box h={"full"}>{pageItem.content}</Box>
+      <Box h={"full"}>
+        {pageItem.links.map((item) => (
+          <LinkWithIcon
+            url={item.url}
+            displayName={item.name}
+            key={`work-page-link-${item.url}`}
+          />
+        ))}
+        {pageItem.content}
+      </Box>
     </MainFrame>
   );
 };

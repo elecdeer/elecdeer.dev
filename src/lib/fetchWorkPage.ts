@@ -6,7 +6,7 @@ export type WorkPageItem = WorkPageHeadlineItem & {
 };
 
 export type LinkItem = {
-  name: string;
+  name?: string;
   url: string;
 };
 
@@ -20,6 +20,19 @@ export const fetchWorkPage = async (
     shortDescription: "this is dummy",
     title: "dummy",
     content: "dummy",
-    links: [],
+    links: [
+      {
+        url: "https://github.com/elecdeer/elecdeer.dev",
+        name: "github.com/elecdeer/elecdeer.dev",
+      },
+      {
+        url: "https://twitter.com/elecdeerdev",
+        name: "twitter.com/elecdeerdev",
+      },
+      {
+        url: "https://www.google.com",
+        name: "www.google.com",
+      },
+    ],
   };
 };
