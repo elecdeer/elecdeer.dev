@@ -30,7 +30,7 @@ export const MainFrame: React.FC<Props> = ({ title, children }) => {
   const rightContent = (
     <>
       {children}
-      <Heading>RIGHTRIGHTRIGHTRIGHTRIGHTRIGHT</Heading>
+      {/*<Heading>RIGHTRIGHTRIGHTRIGHTRIGHTRIGHT</Heading>*/}
     </>
   );
 

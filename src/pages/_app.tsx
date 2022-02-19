@@ -11,8 +11,17 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
 
   useEffect(() => {
     const handleChangeRoute = (url: string) => {
-      const isDeep = router.pathname.split("/").length < url.split("/").length;
-      setDepthChange(isDeep ? "DEEP" : "SHALLOW");
+      const depth =
+        router.pathname.split("/").length < url.split("/").length
+          ? "DEEP"
+          : "SHALLOW";
+      setDepthChange(depth);
+
+      console.log("depthChange", {
+        prev: router.pathname,
+        next: url,
+        change: depth,
+      });
     };
 
     router.events.on("routeChangeStart", handleChangeRoute);
