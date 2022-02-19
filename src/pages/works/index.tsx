@@ -25,7 +25,13 @@ const Index: React.VFC<Props> = ({ workPages }) => {
   }, [workPages]);
 
   return (
-    <MainFrame title={"Works"}>
+    <MainFrame
+      title={"Works"}
+      backLink={{
+        displayTitle: "Top",
+        url: "/",
+      }}
+    >
       <Box h={"full"}>
         <NavigationCardList h={"full"} cards={cards} />
       </Box>

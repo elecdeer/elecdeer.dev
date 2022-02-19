@@ -2,6 +2,7 @@ import type { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
 import { AnimatePresence } from "framer-motion";
 import { createContext, useEffect, useState } from "react";
+import { getUrlDepth } from "../lib/urlDepth";
 
 type DepthChange = "SHALLOW" | "DEEP";
 export const RouteDepthChangeContext = createContext<DepthChange>("DEEP");
@@ -12,9 +13,7 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
   useEffect(() => {
     const handleChangeRoute = (url: string) => {
       const depth =
-        router.pathname.split("/").length <= url.split("/").length
-          ? "DEEP"
-          : "SHALLOW";
+        getUrlDepth(router.pathname) < getUrlDepth(url) ? "DEEP" : "SHALLOW";
       setDepthChange(depth);
 
       console.log("depthChange", {

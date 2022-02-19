@@ -1,10 +1,27 @@
 import React, { useContext } from "react";
-import { Box, BoxProps, Center, Flex, Heading, HStack } from "@chakra-ui/react";
+import {
+  Box,
+  BoxProps,
+  Center,
+  Flex,
+  Heading,
+  HStack,
+  LinkBox,
+  LinkOverlay,
+  Spacer,
+  VStack,
+} from "@chakra-ui/react";
 import { motion, Transition } from "framer-motion";
 import { RouteDepthChangeContext } from "../../pages/_app";
+import Link from "next/link";
+import { ChevronLeftIcon } from "@chakra-ui/icons";
 
 type Props = {
   title: string;
+  backLink?: {
+    displayTitle: string;
+    url: string;
+  };
   children?: React.ReactChild;
 };
 
@@ -15,16 +32,38 @@ const transition: Transition = {
   duration: "1",
 };
 
-export const MainFrame: React.FC<Props> = ({ title, children }) => {
+export const MainFrame: React.FC<Props> = ({ title, backLink, children }) => {
   //fullなCenterはブラウザ画面サイズ変えるときになんか重いので止めた方がいいかも
   //そういう話でも無いか？
 
   const leftContent = (
-    <Center h={"full"} w={"full"}>
-      <Heading size={"2xl"} textColor={"white"}>
-        {title}
-      </Heading>
-    </Center>
+    <>
+      <VStack h={"full"} w={"full"}>
+        <Center h={"full"}>
+          <Heading size={"2xl"} textColor={"white"}>
+            {title}
+          </Heading>
+        </Center>
+        <Spacer />
+        <Box h={40}>
+          {backLink && (
+            <LinkBox>
+              <HStack>
+                <ChevronLeftIcon boxSize={8} color={"white"} />
+                <Heading size={"lg"} textColor={"white"}>
+                  {/* eslint-disable-next-line @next/next/link-passhref */}
+                  <Link href={backLink.url}>
+                    <LinkOverlay href={backLink.url}>
+                      {backLink.displayTitle}
+                    </LinkOverlay>
+                  </Link>
+                </Heading>
+              </HStack>
+            </LinkBox>
+          )}
+        </Box>
+      </VStack>
+    </>
   );
 
   const rightContent = (
@@ -84,6 +123,7 @@ export const MainFrame: React.FC<Props> = ({ title, children }) => {
               : { rotateY: 0 }
           }
           transition={transition}
+          overflowY={"scroll"}
         >
           {rightContent}
         </MotionBox>

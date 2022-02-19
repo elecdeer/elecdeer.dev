@@ -16,8 +16,8 @@ export const NavigationCardList: React.FC<Props & BoxProps> = ({
 }) => {
   return (
     <Stack {...props}>
-      {cards.map((card) => (
-        <NavigationCard key={card.title} {...card} />
+      {cards.map((card, index) => (
+        <NavigationCard key={`${card.title}-${index}`} {...card} />
       ))}
     </Stack>
   );
