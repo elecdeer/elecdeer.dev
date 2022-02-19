@@ -8,7 +8,8 @@ import {
   Spacer,
   Stack,
 } from "@chakra-ui/react";
-import { ChevronRightIcon } from "@chakra-ui/icons";
+import NextLink from "next/link";
+import { NavigationCardIcon } from "./NavigationCardIcon";
 
 export type NavigationCardProps = {
   title: string;
@@ -34,13 +35,15 @@ export const NavigationCard: React.VFC<NavigationCardProps> = ({
       <HStack w={"full"}>
         <Stack>
           <Heading size="lg">
-            <LinkOverlay href={linkUrl}>{title}</LinkOverlay>
+            <NextLink href={linkUrl}>
+              <LinkOverlay href={linkUrl}>{title}</LinkOverlay>
+            </NextLink>
           </Heading>
           {description && <Box>{description}</Box>}
         </Stack>
         <Spacer />
         <Box>
-          <ChevronRightIcon boxSize={"8"} />
+          <NavigationCardIcon url={linkUrl} boxSize={"8"} />
         </Box>
       </HStack>
     </LinkBox>
