@@ -16,7 +16,13 @@ interface Params extends ParsedUrlQuery {
 
 const WorkPage: React.VFC<Props> = ({ pageItem }) => {
   return (
-    <MainFrame title={pageItem.title}>
+    <MainFrame
+      title={pageItem.title}
+      backLink={{
+        url: "/works",
+        displayName: "Works",
+      }}
+    >
       <Box h={"full"}>{pageItem.content}</Box>
     </MainFrame>
   );

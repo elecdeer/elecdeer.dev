@@ -30,9 +30,6 @@ const transition: Transition = {
 };
 
 export const MainFrame: React.FC<Props> = ({ title, backLink, children }) => {
-  //fullなCenterはブラウザ画面サイズ変えるときになんか重いので止めた方がいいかも
-  //そういう話でも無いか？
-
   const leftContent = (
     <>
       <VStack h={"full"} w={"full"}>
