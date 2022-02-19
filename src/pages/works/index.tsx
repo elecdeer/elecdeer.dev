@@ -28,7 +28,7 @@ const Index: React.VFC<Props> = ({ workPages }) => {
     <MainFrame
       title={"Works"}
       backLink={{
-        displayTitle: "Top",
+        displayName: "Top",
         url: "/",
       }}
     >

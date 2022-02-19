@@ -6,20 +6,17 @@ import {
   Flex,
   Heading,
   HStack,
-  LinkBox,
-  LinkOverlay,
   Spacer,
   VStack,
 } from "@chakra-ui/react";
 import { motion, Transition } from "framer-motion";
 import { RouteDepthChangeContext } from "../../pages/_app";
-import Link from "next/link";
-import { ChevronLeftIcon } from "@chakra-ui/icons";
+import { PageBackLink } from "../molecules/PageBackLink";
 
 type Props = {
   title: string;
   backLink?: {
-    displayTitle: string;
+    displayName: string;
     url: string;
   };
   children?: React.ReactChild;
@@ -45,23 +42,7 @@ export const MainFrame: React.FC<Props> = ({ title, backLink, children }) => {
           </Heading>
         </Center>
         <Spacer />
-        <Box h={40}>
-          {backLink && (
-            <LinkBox>
-              <HStack>
-                <ChevronLeftIcon boxSize={8} color={"white"} />
-                <Heading size={"lg"} textColor={"white"}>
-                  {/* eslint-disable-next-line @next/next/link-passhref */}
-                  <Link href={backLink.url}>
-                    <LinkOverlay href={backLink.url}>
-                      {backLink.displayTitle}
-                    </LinkOverlay>
-                  </Link>
-                </Heading>
-              </HStack>
-            </LinkBox>
-          )}
-        </Box>
+        <Box h={40}>{backLink && <PageBackLink {...backLink} />}</Box>
       </VStack>
     </>
   );
