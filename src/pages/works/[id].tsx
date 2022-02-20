@@ -32,7 +32,11 @@ const WorkPage: React.VFC<Props> = ({ pageItem }) => {
             key={`work-page-link-${item.url}`}
           />
         ))}
-        {pageItem.content}
+        <Box
+          dangerouslySetInnerHTML={{
+            __html: pageItem.content,
+          }}
+        />
       </Box>
     </MainFrame>
   );

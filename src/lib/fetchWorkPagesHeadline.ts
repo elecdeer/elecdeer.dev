@@ -1,3 +1,5 @@
+import { client } from "./microcmsAPI";
+
 export type WorkPageHeadlineItem = {
   id: string;
   title: string;
@@ -7,57 +9,12 @@ export type WorkPageHeadlineItem = {
 export const fetchWorkPagesHeadline = async (): Promise<
   WorkPageHeadlineItem[]
 > => {
-  //TODO 実装する
-  return [
-    {
-      id: "dummy",
-      title: "dummy",
-      shortDescription: "this is dummy",
+  const res = await client.getList<WorkPageHeadlineItem>({
+    endpoint: "work-pages",
+    queries: {
+      limit: 100,
+      fields: ["title", "shortDescription", "id"],
     },
-    {
-      id: "dummy",
-      title: "dummy",
-      shortDescription: "this is dummy",
-    },
-    {
-      id: "dummy",
-      title: "dummy",
-      shortDescription: "this is dummy",
-    },
-    {
-      id: "dummy",
-      title: "dummy",
-      shortDescription: "this is dummy",
-    },
-    {
-      id: "dummy",
-      title: "dummy",
-      shortDescription: "this is dummy",
-    },
-    {
-      id: "dummy",
-      title: "dummy",
-      shortDescription: "this is dummy",
-    },
-    {
-      id: "dummy",
-      title: "dummy",
-      shortDescription: "this is dummy",
-    },
-    {
-      id: "dummy",
-      title: "dummy",
-      shortDescription: "this is dummy",
-    },
-    {
-      id: "dummy",
-      title: "dummy",
-      shortDescription: "this is dummy",
-    },
-    {
-      id: "dummy",
-      title: "dummy",
-      shortDescription: "this is dummy",
-    },
-  ];
+  });
+  return res.contents;
 };

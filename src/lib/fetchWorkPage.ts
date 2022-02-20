@@ -1,4 +1,5 @@
 import { WorkPageHeadlineItem } from "./fetchWorkPagesHeadline";
+import { client } from "./microcmsAPI";
 
 export type WorkPageItem = WorkPageHeadlineItem & {
   content: WorkPageContent;
@@ -12,27 +13,41 @@ export type LinkItem = {
 
 export type WorkPageContent = string;
 
+type FetchedWorkPageItem = Omit<WorkPageItem, "links"> & {
+  linkListRaw: string;
+};
+
 export const fetchWorkPage = async (
   id: WorkPageItem["id"]
 ): Promise<WorkPageItem> => {
+  const res = await client.get<FetchedWorkPageItem>({
+    endpoint: "work-pages",
+    contentId: id,
+  });
+  console.log(parseLinks(res.linkListRaw));
+
   return {
-    id: "dummy",
-    shortDescription: "this is dummy",
-    title: "dummy",
-    content: "dummy",
-    links: [
-      {
-        url: "https://github.com/elecdeer/elecdeer.dev",
-        name: "github.com/elecdeer/elecdeer.dev",
-      },
-      {
-        url: "https://twitter.com/elecdeerdev",
-        name: "twitter.com/elecdeerdev",
-      },
-      {
-        url: "https://www.google.com",
-        name: "www.google.com",
-      },
-    ],
+    links: parseLinks(res.linkListRaw),
+    ...res,
   };
+};
+
+const markdownLinkParseReg = /\[([^\[]+)]\((.*)\)/;
+
+const parseLinks = (linkListRaw: string): LinkItem[] => {
+  const items = linkListRaw.split("\n");
+  return items.map((item) => {
+    const markdownLinkParsed = markdownLinkParseReg.exec(item);
+    if (markdownLinkParsed) {
+      return {
+        name: markdownLinkParsed[1],
+        url: markdownLinkParsed[2],
+      };
+    } else {
+      return {
+        name: item,
+        url: item,
+      };
+    }
+  });
 };
