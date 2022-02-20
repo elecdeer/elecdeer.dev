@@ -16,6 +16,7 @@ const distinctUrlType = (url: string): URLType => {
   const parsedUrl = new URL(url);
   switch (parsedUrl.host) {
     case "github.com":
+    case "gist.github.com":
       return "GitHub";
     case "twitter.com":
       return "Twitter";
