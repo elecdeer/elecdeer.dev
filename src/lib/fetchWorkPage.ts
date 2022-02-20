@@ -34,6 +34,10 @@ export const fetchWorkPage = async (
 
 const markdownLinkParseReg = /\[([^\[]+)]\((.*)\)/;
 
+/**
+ * markdownリンクまたはURLを改行区切りで列挙したstringをパースする
+ * @param linkListRaw
+ */
 const parseLinks = (linkListRaw: string): LinkItem[] => {
   const items = linkListRaw.split("\n");
   return items.map((item) => {

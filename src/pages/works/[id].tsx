@@ -16,6 +16,8 @@ interface Params extends ParsedUrlQuery {
 }
 
 const WorkPage: React.VFC<Props> = ({ pageItem }) => {
+  //TODO html-react-parserを使ってChakraUIでのコンポーネント記述に変更する
+
   return (
     <MainFrame
       title={pageItem.title}

@@ -3,6 +3,7 @@ import { Box } from "@chakra-ui/react";
 import { NavigationCardList } from "../components/organisms/NavigationCardList";
 
 export default function Home() {
+  //TODO トップ画面もCMSで書ける様にする
   return (
     <MainFrame title={"elecdeer.dev"}>
       <Box h={"full"}>
