@@ -1,7 +1,7 @@
 import parse, {
-  HTMLReactParserOptions,
-  Element,
   domToReact,
+  Element,
+  HTMLReactParserOptions,
 } from "html-react-parser";
 import {
   Box,
@@ -90,7 +90,5 @@ const parseOptions: HTMLReactParserOptions = {
 };
 
 const htmlToChakraParser = (html: string) => {
-  const parsed = parse(html, parseOptions);
-  console.log(parsed);
-  return parsed;
+  return parse(html, parseOptions);
 };

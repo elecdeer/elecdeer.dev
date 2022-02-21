@@ -7,6 +7,7 @@ import { fetchWorkPage, WorkPageItem } from "../../lib/fetchWorkPage";
 import React from "react";
 import { LinkWithIcon } from "../../components/molecules/LinkWithIcon";
 import { RichText } from "../../components/templates/RichText";
+import NextImage from "next/image";
 
 type Props = {
   pageItem: WorkPageItem;
@@ -17,8 +18,6 @@ interface Params extends ParsedUrlQuery {
 }
 
 const WorkPage: React.VFC<Props> = ({ pageItem }) => {
-  //TODO html-react-parserを使ってChakraUIでのコンポーネント記述に変更する
-
   return (
     <MainFrame
       title={pageItem.title}
@@ -29,6 +28,11 @@ const WorkPage: React.VFC<Props> = ({ pageItem }) => {
     >
       <Box h={"full"}>
         <Stack>
+          <NextImage
+            src={pageItem.headingImg.url}
+            width={pageItem.headingImg.width}
+            height={pageItem.headingImg.height}
+          />
           <Stack>
             {pageItem.links.map((item, index) => (
               <LinkWithIcon

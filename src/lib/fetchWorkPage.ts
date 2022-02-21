@@ -1,9 +1,11 @@
 import { WorkPageHeadlineItem } from "./fetchWorkPagesHeadline";
 import { client } from "./microcmsAPI";
+import { MicroCMSImage } from "microcms-js-sdk/dist/cjs/types";
 
 export type WorkPageItem = WorkPageHeadlineItem & {
-  content: WorkPageContent;
+  headingImg: MicroCMSImage;
   links: LinkItem[];
+  content: WorkPageContent;
 };
 
 export type LinkItem = {
