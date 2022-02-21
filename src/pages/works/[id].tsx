@@ -28,11 +28,14 @@ const WorkPage: React.VFC<Props> = ({ pageItem }) => {
     >
       <Box h={"full"}>
         <Stack>
-          <NextImage
-            src={pageItem.headingImg.url}
-            width={pageItem.headingImg.width}
-            height={pageItem.headingImg.height}
-          />
+          {pageItem.headingImg && (
+            <NextImage
+              src={pageItem.headingImg.url}
+              width={pageItem.headingImg.width}
+              height={pageItem.headingImg.height}
+            />
+          )}
+
           <Stack>
             {pageItem.links.map((item, index) => (
               <LinkWithIcon

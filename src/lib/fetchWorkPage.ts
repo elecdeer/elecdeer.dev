@@ -31,18 +31,20 @@ const markdownLinkParseReg = /\[([^\[]+)]\((.*)\)/;
  */
 const parseLinks = (linkListRaw: string): LinkItem[] => {
   const items = linkListRaw.split("\n");
-  return items.map((item) => {
-    const markdownLinkParsed = markdownLinkParseReg.exec(item);
-    if (markdownLinkParsed) {
-      return {
-        name: markdownLinkParsed[1],
-        url: markdownLinkParsed[2],
-      };
-    } else {
-      return {
-        name: item,
-        url: item,
-      };
-    }
-  });
+  return items
+    .filter((item) => !!item)
+    .map((item) => {
+      const markdownLinkParsed = markdownLinkParseReg.exec(item);
+      if (markdownLinkParsed) {
+        return {
+          name: markdownLinkParsed[1],
+          url: markdownLinkParsed[2],
+        };
+      } else {
+        return {
+          name: item,
+          url: item,
+        };
+      }
+    });
 };

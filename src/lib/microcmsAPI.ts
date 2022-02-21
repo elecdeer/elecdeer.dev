@@ -22,7 +22,7 @@ export type MicroCMSAPISchema = {
   "work-pages": {
     title: string;
     shortDescription: string;
-    headingImg: MicroCMSImage;
+    headingImg?: MicroCMSImage;
     linkListRaw: string;
     content: string;
   } & MicroCMSContentId;
