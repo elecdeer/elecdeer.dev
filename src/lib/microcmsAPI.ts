@@ -1,8 +1,8 @@
-import { createClient } from "microcms-js-sdk";
 import {
+  createClient,
   MicroCMSContentId,
   MicroCMSImage,
-} from "microcms-js-sdk/dist/cjs/types";
+} from "microcms-js-sdk";
 
 const apiDomain = process.env.API_DOMAIN;
 const apiKey = process.env.API_KEY;
