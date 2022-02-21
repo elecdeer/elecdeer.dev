@@ -1,10 +1,9 @@
-import { client } from "./microcmsAPI";
+import { client, MicroCMSAPISchema } from "./microcmsAPI";
 
-export type WorkPageHeadlineItem = {
-  id: string;
-  title: string;
-  shortDescription: string;
-};
+export type WorkPageHeadlineItem = Omit<
+  MicroCMSAPISchema["work-pages"],
+  "headingImg" | "linkListRaw" | "content"
+>;
 
 export const fetchWorkPagesHeadline = async (): Promise<
   WorkPageHeadlineItem[]

@@ -1,11 +1,7 @@
-import { WorkPageHeadlineItem } from "./fetchWorkPagesHeadline";
-import { client } from "./microcmsAPI";
-import { MicroCMSImage } from "microcms-js-sdk/dist/cjs/types";
+import { client, MicroCMSAPISchema } from "./microcmsAPI";
 
-export type WorkPageItem = WorkPageHeadlineItem & {
-  headingImg: MicroCMSImage;
+export type WorkPageItem = MicroCMSAPISchema["work-pages"] & {
   links: LinkItem[];
-  content: WorkPageContent;
 };
 
 export type LinkItem = {
@@ -13,20 +9,13 @@ export type LinkItem = {
   url: string;
 };
 
-export type WorkPageContent = string;
-
-type FetchedWorkPageItem = Omit<WorkPageItem, "links"> & {
-  linkListRaw: string;
-};
-
 export const fetchWorkPage = async (
   id: WorkPageItem["id"]
 ): Promise<WorkPageItem> => {
-  const res = await client.get<FetchedWorkPageItem>({
+  const res = await client.get<MicroCMSAPISchema["work-pages"]>({
     endpoint: "work-pages",
     contentId: id,
   });
-  console.log(parseLinks(res.linkListRaw));
 
   return {
     links: parseLinks(res.linkListRaw),
