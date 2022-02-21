@@ -1,32 +1,31 @@
 import { MainFrame } from "../components/templates/MainFrame";
 import { Box } from "@chakra-ui/react";
 import { NavigationCardList } from "../components/organisms/NavigationCardList";
+import { GetStaticProps } from "next";
+import { fetchTopLinks, TopLinkItem } from "../lib/fetchTopLinks";
+import React from "react";
 
-export default function Home() {
-  //TODO トップ画面もCMSで書ける様にする
+type Props = {
+  topLinks: TopLinkItem[];
+};
+
+const Home: React.VFC<Props> = ({ topLinks }) => {
   return (
     <MainFrame title={"elecdeer.dev"}>
       <Box h={"full"}>
-        <NavigationCardList
-          h={"full"}
-          cards={[
-            {
-              title: "Work",
-              description: "制作物",
-              linkUrl: "/works",
-            },
-            {
-              title: "Blog",
-              description: "ブログ&備忘録",
-              linkUrl: "https://scrapbox.io/elecdeer-pub/",
-            },
-            {
-              title: "GitHub",
-              linkUrl: "https://github.com/elecdeer",
-            },
-          ]}
-        />
+        <NavigationCardList h={"full"} cards={topLinks} />
       </Box>
     </MainFrame>
   );
-}
+};
+
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const linkItems = await fetchTopLinks();
+  return {
+    props: {
+      topLinks: linkItems,
+    },
+  };
+};
+
+export default Home;

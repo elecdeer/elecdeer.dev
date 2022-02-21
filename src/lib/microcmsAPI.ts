@@ -26,4 +26,9 @@ export type MicroCMSAPISchema = {
     linkListRaw: string;
     content: string;
   } & MicroCMSContentId;
+  "top-links": {
+    title: string;
+    description: string;
+    linkUrl: string;
+  };
 };
