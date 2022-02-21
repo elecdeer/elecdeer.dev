@@ -1,11 +1,12 @@
 import { MainFrame } from "../../components/templates/MainFrame";
-import { Box } from "@chakra-ui/react";
+import { Box, Stack } from "@chakra-ui/react";
 import { ParsedUrlQuery } from "querystring";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { fetchWorkPagesHeadline } from "../../lib/fetchWorkPagesHeadline";
 import { fetchWorkPage, WorkPageItem } from "../../lib/fetchWorkPage";
 import React from "react";
 import { LinkWithIcon } from "../../components/molecules/LinkWithIcon";
+import { RichText } from "../../components/templates/RichText";
 
 type Props = {
   pageItem: WorkPageItem;
@@ -27,18 +28,18 @@ const WorkPage: React.VFC<Props> = ({ pageItem }) => {
       }}
     >
       <Box h={"full"}>
-        {pageItem.links.map((item) => (
-          <LinkWithIcon
-            url={item.url}
-            displayName={item.name}
-            key={`work-page-link-${item.url}`}
-          />
-        ))}
-        <Box
-          dangerouslySetInnerHTML={{
-            __html: pageItem.content,
-          }}
-        />
+        <Stack>
+          <Stack>
+            {pageItem.links.map((item) => (
+              <LinkWithIcon
+                url={item.url}
+                displayName={item.name}
+                key={`work-page-link-${item.url}`}
+              />
+            ))}
+          </Stack>
+          <RichText html={pageItem.content} />
+        </Stack>
       </Box>
     </MainFrame>
   );
