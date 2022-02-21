@@ -71,6 +71,7 @@ const parseOptions: HTMLReactParserOptions = {
             borderLeft={"4px"}
             borderLeftColor={"gray.400"}
             paddingLeft={"4px"}
+            my={1}
           >
             {children}
           </Text>

@@ -30,11 +30,11 @@ const WorkPage: React.VFC<Props> = ({ pageItem }) => {
       <Box h={"full"}>
         <Stack>
           <Stack>
-            {pageItem.links.map((item) => (
+            {pageItem.links.map((item, index) => (
               <LinkWithIcon
                 url={item.url}
                 displayName={item.name}
-                key={`work-page-link-${item.url}`}
+                key={`work-page-link-${item.url}-${index}`}
               />
             ))}
           </Stack>
