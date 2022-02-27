@@ -37,6 +37,7 @@ export const LinkWithIcon: React.VFC<Props> = ({ url, displayName }) => {
         <InnerIcon urlType={type} boxSize={6} />
         <Text
           fontSize={"md"}
+          textColor={"teal.500"}
           isTruncated
           _groupHover={{
             textDecoration: "underline",

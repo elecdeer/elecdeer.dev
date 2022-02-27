@@ -61,7 +61,11 @@ const parseOptions: HTMLReactParserOptions = {
       case "li":
         return <ListItem>{children}</ListItem>;
       case "a":
-        return <Link href={domNode.attribs.href}>{children}</Link>;
+        return (
+          <Link href={domNode.attribs.href} textColor={"teal.500"}>
+            {children}
+          </Link>
+        );
       case "code":
         return <Code>{children}</Code>;
       case "blockquote":
