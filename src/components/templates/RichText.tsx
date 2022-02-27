@@ -53,7 +53,11 @@ const parseOptions: HTMLReactParserOptions = {
       case "s":
       case "sub":
       case "sup":
-        return <Text as={domNode.name}>{children}</Text>;
+        return (
+          <Text as={domNode.name} py={1}>
+            {children}
+          </Text>
+        );
       case "ul":
         return <UnorderedList>{children}</UnorderedList>;
       case "ol":
@@ -82,12 +86,14 @@ const parseOptions: HTMLReactParserOptions = {
         );
       case "img":
         return (
-          <NextImage
-            src={domNode.attribs.src}
-            alt={domNode.attribs.alt}
-            width={domNode.attribs.width}
-            height={domNode.attribs.height}
-          />
+          <Box borderWidth={1}>
+            <NextImage
+              src={domNode.attribs.src}
+              alt={domNode.attribs.alt}
+              width={domNode.attribs.width}
+              height={domNode.attribs.height}
+            />
+          </Box>
         );
     }
   },

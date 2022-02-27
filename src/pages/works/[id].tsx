@@ -36,7 +36,7 @@ const WorkPage: React.VFC<Props> = ({ pageItem }) => {
             />
           )}
 
-          <Stack>
+          <Stack py={2}>
             {pageItem.links.map((item, index) => (
               <LinkWithIcon
                 url={item.url}
