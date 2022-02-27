@@ -7,6 +7,7 @@ import {
   LinkOverlay,
   Spacer,
   Stack,
+  Text,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { NavigationCardIcon } from "./NavigationCardIcon";
@@ -40,7 +41,11 @@ export const NavigationCard: React.VFC<NavigationCardProps> = ({
               <LinkOverlay href={linkUrl}>{title}</LinkOverlay>
             </NextLink>
           </Heading>
-          {description && <Box>{description}</Box>}
+          {description && (
+            <Box>
+              <Text>{description}</Text>
+            </Box>
+          )}
         </Stack>
         <Spacer />
         <Box>
