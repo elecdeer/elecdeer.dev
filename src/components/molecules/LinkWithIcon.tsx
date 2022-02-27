@@ -1,7 +1,7 @@
 import React from "react";
 import { HStack, Icon, Text } from "@chakra-ui/react";
 import { IconProps } from "@chakra-ui/icon";
-import { BsGithub, BsTwitter } from "react-icons/bs";
+import { BsGithub, BsTwitter, BsYoutube } from "react-icons/bs";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import Link from "next/link";
 
@@ -10,16 +10,19 @@ type Props = {
   displayName?: string;
 };
 
-type URLType = "GitHub" | "Twitter" | "Other";
+type URLType = "GitHub" | "Twitter" | "Youtube" | "Other";
 
 const distinctUrlType = (url: string): URLType => {
   const parsedUrl = new URL(url);
-  switch (parsedUrl.host) {
+  const host = parsedUrl.host.replace("www.", "");
+  switch (host) {
     case "github.com":
     case "gist.github.com":
       return "GitHub";
     case "twitter.com":
       return "Twitter";
+    case "youtube.com":
+      return "Youtube";
     default:
       return "Other";
   }
@@ -55,6 +58,8 @@ const InnerIcon: React.VFC<{ urlType: URLType } & IconProps> = ({
       return <Icon as={BsGithub} {...props} />;
     case "Twitter":
       return <Icon as={BsTwitter} {...props} />;
+    case "Youtube":
+      return <Icon as={BsYoutube} {...props} />;
     case "Other":
       return <ExternalLinkIcon {...props} />;
   }
