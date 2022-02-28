@@ -11,7 +11,7 @@
     "@chakra-ui/icons": "^1.1.7",
     "@chakra-ui/react": "^1.7.2",
     "@emotion/react": "^11.7.0",
-    "@emotion/styled": "^11.6.0",
+    "@emotion/styled": "^11.8.1",
     "framer-motion": "^4.1.17",
     "html-react-parser": "^1.4.8",
     "microcms-js-sdk": "^2.0.0",
