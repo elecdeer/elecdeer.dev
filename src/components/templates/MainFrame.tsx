@@ -111,6 +111,7 @@ export const MainFrame: React.FC<Props> = ({ title, backLink, children }) => {
             }
             transition={transition}
             overflowY={"scroll"}
+            overflowX={"hidden"}
           >
             {rightContent}
           </MotionBox>

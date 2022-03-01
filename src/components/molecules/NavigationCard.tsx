@@ -29,20 +29,20 @@ export const NavigationCard: React.VFC<NavigationCardProps> = ({
       rounded={"md"}
       px={4}
       py={2}
+      minH={36}
       h={"full"}
-      minH={32}
       display={"flex"}
       _hover={{ borderColor: "green.400", borderWidth: "2" }}
     >
       <HStack w={"full"}>
-        <Stack>
+        <Stack justifyContent={"center"}>
           <Heading size="lg">
             <NextLink href={linkUrl}>
               <LinkOverlay href={linkUrl}>{title}</LinkOverlay>
             </NextLink>
           </Heading>
           {description && (
-            <Box>
+            <Box overflow={"hidden"}>
               <Text>{description}</Text>
             </Box>
           )}
