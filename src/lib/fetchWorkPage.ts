@@ -29,7 +29,8 @@ const markdownLinkParseReg = /\[([^\[]+)]\((.*)\)/;
  * markdownリンクまたはURLを改行区切りで列挙したstringをパースする
  * @param linkListRaw
  */
-const parseLinks = (linkListRaw: string): LinkItem[] => {
+const parseLinks = (linkListRaw?: string): LinkItem[] => {
+  if (!linkListRaw) return [];
   const items = linkListRaw.split("\n");
   return items
     .filter((item) => !!item)

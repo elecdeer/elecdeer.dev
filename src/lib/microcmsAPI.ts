@@ -23,7 +23,7 @@ export type MicroCMSAPISchema = {
     title: string;
     shortDescription: string;
     headingImg?: MicroCMSImage;
-    linkListRaw: string;
+    linkListRaw?: string;
     content: string;
   } & MicroCMSContentId;
   "top-links": {
